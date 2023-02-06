@@ -35,7 +35,7 @@ app.get("/search", (req, res) => {
   );
   res.render("index", { restaurantList: filteredRestaurant, keyword });
 });
-
+// 開啟並監聽伺服器
 app.listen(port, () => {
   console.log(`listening on http://localhost:${port}`);
 });
