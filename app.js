@@ -1,6 +1,7 @@
-//載入模組及模板引擎
+//載入模組及模板引擎即種子資料
 const express = require("express");
 const app = express();
+const restaurantList = require("./restaurant.json").results;
 //設定連接埠:
 const port = 3000;
 // 設定模板引擎
@@ -12,7 +13,7 @@ app.set("view engine", "hbs");
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", { restaurantList });
 });
 
 app.listen(port, () => {
