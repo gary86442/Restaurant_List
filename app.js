@@ -12,8 +12,17 @@ app.set("view engine", "hbs");
 //設定靜態資料抓取位置
 app.use(express.static("public"));
 
+//處理路由
+//首頁
 app.get("/", (req, res) => {
   res.render("index", { restaurantList });
+});
+
+//餐廳詳細頁面
+app.get("/restaurants/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const restaurant = restaurantList.find((restaurant) => restaurant.id === id);
+  res.render("show", { restaurant });
 });
 
 app.listen(port, () => {
