@@ -25,6 +25,17 @@ app.get("/restaurants/:id", (req, res) => {
   res.render("show", { restaurant });
 });
 
+//搜尋功能
+app.get("/search", (req, res) => {
+  const keyword = req.query.keyword.trim().toLowerCase();
+  const filteredRestaurant = restaurantList.filter(
+    (restaurant) =>
+      restaurant.name.toLowerCase().includes(keyword) ||
+      restaurant.category.includes(keyword)
+  );
+  res.render("index", { restaurantList: filteredRestaurant, keyword });
+});
+
 app.listen(port, () => {
   console.log(`listening on http://localhost:${port}`);
 });
